@@ -1,0 +1,28 @@
+type Test {
+  id: ID
+  test: String!
+}
+
+type User {
+  username: String! @id
+  displayName: String
+  picture: String
+  domains: [Domain] @hasInverse(field: admins)
+}
+
+type Domain {
+  domain: String! @id
+  admins: [User] @hasInverse(field: domains)
+  pages: [Page] @hasInverse(field: domain)
+}
+
+type Page {
+  id: ID
+  title: String!
+  domain: Domain! @hasInverse(field: pages)
+  author: User!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+# Dgraph.Authorization {"VerificationKey":"-----BEGIN CERTIFICATE-----\nMIIDDTCCAfWgAwIBAgIJc+0x/XTZXSXbMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNV\nBAMTGWRldi13NTlrZDRoMS51cy5hdXRoMC5jb20wHhcNMjEwMTIzMjMzMTM3WhcN\nMzQxMDAyMjMzMTM3WjAkMSIwIAYDVQQDExlkZXYtdzU5a2Q0aDEudXMuYXV0aDAu\nY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApdbfMOYITREYCCO0\n76dBBv0X1rJuLSpNxWk/CFojgGgpaPzz5YkaNeeL4p6LDRw55PhBMH9Xq0qNWZ0c\nzAa6LVXrmlGGxkZXDqpE6Z/9hgEt3R5Cr2uoEnaG47v9vNhy7JGf/YCpHFKvADmw\n5k8XWEy68BplPVmQSRee6OzJ/dUX6l+xT183ZYrEel+U2nixr9BeWQZI39KcwFLO\n3a4ctxknX9w1st0q54rmQC2fZMU+/PkOGIZGMx2Vfn322qqLN0oi++gOAGlwK/QA\nOskDF5jwdL/TSjUr04lhnBBWna3CPEe/2V4RzVW04qSst2Fsmm+SgxspK05tGpNV\nIvfP3QIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBR0hLvmiXZ2\n5Trs7npKrUf2z6boeTAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEB\nAH9IV2ciq8s2fyw52E8PAsK86AWgIh9PINpdbjjDzm8dQtd49X0PoDRIRLgS/R2f\nWqSVwUubbsA1kQO9YGtdrWK3CMalYA1ukIE3mX8xlQ07S27KJqGy2Ol/QfO++Z3n\nVzHFWR13e5Xv7COLKYFhap8rv/YCa/9RUOG7NXXRo7SQdcr+ZaTp6ucr+E/KWbvr\nBjmH/VKBTmraY2WFiiI+H7srSR6XYdERwI7GXCtLZnZDvq1jJ3K9pV4MW5u7kK5o\nmOXS4VqWYgsYogiaIz0e/sa9au8mbor1ePomNOw/m5TA0c44bqie5EBK80spiw4j\nQXthIRfwI6zX1CckW28Q/PA=\n-----END CERTIFICATE-----","Header":"X-My-App-Auth","Namespace":"https://my.app.io/jwt/claims","Algo":"RS256","Audience":["ylzppV0dwrDNxLmGs1Zlgw8plZ6ZY2Mw"]}
